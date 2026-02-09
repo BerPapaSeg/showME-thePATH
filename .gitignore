@@ -3,3 +3,34 @@ dist
 node_modules
 .vscode-test/
 *.vsix
+
+
+# Dependências
+node_modules/
+.npm
+package-lock.json # (Opcional: alguns preferem manter para travar versões, eu recomendo manter)
+
+# Builds e Compilados
+out/
+dist/
+build/
+
+# VS Code Extension files
+.vscode-test/
+*.vsix
+.vs/
+
+# Configurações de Editor (Aqui a gente limpa a sujeira)
+.vscode/*
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+# O "!" significa: "Ignore a pasta .vscode inteira, EXCETO esses arquivos de config úteis"
+
+# Logs e Lixo de Sistema
+*.log
+.DS_Store
+Thumbs.db
+
+# Testes
+coverage/
