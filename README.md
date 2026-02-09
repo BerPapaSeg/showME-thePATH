@@ -1,71 +1,58 @@
-# showme-thepath README
+# ShowME-thePATH 
 
-This is the README for your extension "showme-thepath". After writing up a brief description, we recommend including the following sections.
+> "Stop guessing where you are. Let your code tell you."
 
-## Features
+**ShowME-thePATH** é uma extensão para VS Code focada em contexto. Ela adiciona automaticamente o caminho relativo do arquivo no topo do código como um comentário toda vez que você salva.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Ideal para quem vibe coda loucamente e quer dar mais contexto para as IA's que tá usando 
 
-For example if there is an image subfolder under your extension project workspace:
+## ✨ Features
 
-\!\[feature X\]\(images/feature-x.png\)
+- **🚀 Automação ao Salvar:** Não precisa rodar comandos. Salvou, comentou.
+- **🧠 Root Intelligence:** Usa o arquivo `.gitignore` para determinar a raiz real do projeto, garantindo caminhos relativos que fazem sentido.
+- **🛡️ Non-Destructive:**
+  - Se já existe um comentário de path antigo, ele atualiza.
+  - Se existe um comentário diferente (ex: Copyright, TODO), ele insere o path acima, preservando seu código.
+- **🌍 Cross-Platform:** Normaliza as barras para o padrão Unix (`/`) mesmo se você estiver no Windows.
+- **⚡ Lazy Loading:** Só é ativada quando necessário, economizando memória.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## 🛠️ Linguagens Suportadas
 
-## Requirements
+A extensão detecta automaticamente a linguagem e aplica a sintaxe correta de comentário:
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+| Linguagem | Sintaxe | Exemplo |
+| :--- | :--- | :--- |
+| **Python** | `#` | `# src/backend/services/api.py` |
+| **JavaScript** | `//` | `// src/utils/helper.js` |
+| **TypeScript** | `//` | `// src/types/index.ts` |
+| **React (JSX/TSX)**| `//` | `// src/components/Button.tsx` |
 
-## Extension Settings
+## 📦 Instalação (Local / VSIX)
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Como este é um projeto pessoal, você pode instalar manualmente:
 
-For example:
+0. Gere o .vsix localmente
+1. No VS Code, vá em **Extensions** (`Ctrl+Shift+X`).
+2. Clique no menu `...` (Views and More Actions).
+3. Selecione **Install from VSIX...** e escolha o arquivo.
 
-This extension contributes the following settings:
+## ⚙️ Como funciona a Lógica?
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+1. Ao salvar um arquivo (`onWillSaveTextDocument`), a extensão verifica a extensão do arquivo.
+2. Ela sobe a árvore de diretórios procurando pelo primeiro `.gitignore`.
+3. Calcula o caminho relativo entre o `.gitignore` (raiz) e o arquivo atual.
+4. Verifica a primeira linha:
+   - Se for o path correto: **Não faz nada**.
+   - Se for um path antigo/errado: **Substitui**.
+   - Se for código ou outro comentário: **Insere no topo**.
 
-## Known Issues
+## 💻 Desenvolvimento
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Clone o repositório e instale as dependências:
 
-## Release Notes
+```bash
+git clone [https://github.com/BerPapaSeg/showME-thePATH](https://github.com/BerPapaSeg/showME-thePATH)
+cd showme-thepath
+npm install
+```
 
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
