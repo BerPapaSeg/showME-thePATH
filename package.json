@@ -4,7 +4,7 @@
   "description": "Extensão que add o path no inicio do seu código (apenas .py, .js, .jsx, .ts, .tsx) como comentário para facilitar a vida dos vibeCoders",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.109.0"
+    "vscode": "^1.108.0"
   },
   "categories": [
     "Other"
@@ -33,7 +33,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.109.0",
+    "@types/vscode": "^1.108.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
     "typescript-eslint": "^8.54.0",
